@@ -26,8 +26,8 @@ namespace Inlämningsuppgift_Dataåtkomster.Models.Enities
 
         [Required]
         public int AddressId { get; set; }
-        public AddressEntity Address { get; set; } = null!;
-        public List<OrderEntity> Orders { get; set; } = null!;
+        public AddressEntity Address { get; set; } = null!; // FK to address table
+        public List<OrderEntity> Orders { get; set; } = null!; // FK from orders table
 
     }
 
@@ -46,7 +46,7 @@ namespace Inlämningsuppgift_Dataåtkomster.Models.Enities
         [Required]
         [Column(TypeName = "nvarchar(50)")]
         public string City { get; set; } = null!;
-        public ICollection<CustomerEntity> Residents { get; set; } = null!;
+        public ICollection<CustomerEntity> Residents { get; set; } = null!; //FK to Customers table
     }
 
     public class OrderEntity
@@ -55,15 +55,15 @@ namespace Inlämningsuppgift_Dataåtkomster.Models.Enities
         public int Id { get; set; }
         [Required]
         public int CustomerId { get; set; }
-        public CustomerEntity Customers { get; set; } = null!;
+        public CustomerEntity Customers { get; set; } = null!; //FK to Customer table
         [Required]
         public DateTime OrderDate { get; set; }
         [Required]
         public int ProductId { get; set; }
-        public ICollection<ProductsEntity> Products { get; set; } = null!;
+        public ICollection<ProductsEntity> Products { get; set; } = null!; //FK from Products table
         [Required]
         public int OrderItemId { get; set; }
-        public ICollection<OrderItemsEntity> CartItem { get; set; } = null!;
+        public ICollection<OrderItemsEntity> CartItem { get; set; } = null!; 
     }
 
     [Index(nameof(Name), IsUnique = true)]
@@ -74,7 +74,7 @@ namespace Inlämningsuppgift_Dataåtkomster.Models.Enities
         [Required]
         [Column(TypeName = "nvarchar(250)")]
         public string Name { get; set; } = null!;
-        public ICollection<ProductsEntity> Products { get; set; } = null!;
+        public ICollection<ProductsEntity> Products { get; set; } = null!; // Fk from products table
     }
 
     [Index(nameof(Name), IsUnique = true)]
@@ -83,15 +83,20 @@ namespace Inlämningsuppgift_Dataåtkomster.Models.Enities
         [Key]
         public int Id { get; set; }        
         public int CategoryId { get; set; }
+        public CategorysEntity Category { get; set; } = null!; //Fk to categorys table
         [Required]
         [Column(TypeName = "nvarchar(250)")]
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
-        [Required]
+        [Required]        
         public int PriceId { get; set; }
+        public PriceListEntity Price { get; set; } = null!; //Fk from PriceList table
         [Required]
         public int Stock { get; set; }
-        public OrderEntity Order { get; set; } = null!;
+        public OrderEntity Order { get; set; } = null!; //Fk from Order table
+        public VendorsEntity Vendors { get; set; } = null!; //Fk to Vendors table
+
+
     }
     public class VendorsEntity
     {
@@ -100,6 +105,7 @@ namespace Inlämningsuppgift_Dataåtkomster.Models.Enities
         [Required]
         [Column(TypeName = "nvarchar(250)")]
         public string Name { get; set; } = null!;
+        public ICollection<ProductsEntity> CategoryProducts { get; set; } = null!;
     }
     public class PriceListEntity
     {
