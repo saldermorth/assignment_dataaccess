@@ -105,7 +105,7 @@ namespace Inlämningsuppgift_Dataåtkomster.Models.Enities
         [Required]
         [Column(TypeName = "nvarchar(250)")]
         public string Name { get; set; } = null!;
-        public ICollection<ProductsEntity> CategoryProducts { get; set; } = null!;
+        public ICollection<ProductsEntity> CategoryProducts { get; set; } = null!; //Fk from Products table
     }
     public class PriceListEntity
     {
@@ -114,7 +114,11 @@ namespace Inlämningsuppgift_Dataåtkomster.Models.Enities
         [Required]
         [Column(TypeName = "char(3)")]
         public string CurrencyCode { get; set; } = null!;
+        [Required]
         public DateTime Modified { get; set; }
+        [Required]
+        public int ProductId { get; set; }
+        public ProductsEntity Products { get; set; } = null!;
 
     }
     public class OrderItemsEntity
@@ -123,7 +127,9 @@ namespace Inlämningsuppgift_Dataåtkomster.Models.Enities
         public int Id { get; set; }
         [Required]
         public int ProductId { get; set; }
+        public ProductsEntity Products { get; set; } = null!; //Fk to Producs Table
         [Required]
         public int Quantity { get; set; }
+        public OrderEntity Order { get; set; } //Fk from Orders table
     }
 }
