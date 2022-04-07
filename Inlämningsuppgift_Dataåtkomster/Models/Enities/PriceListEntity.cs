@@ -11,6 +11,9 @@ namespace Inlämningsuppgift_Dataåtkomster.Models.Enities
         [Column(TypeName = "char(3)")]
         public string CurrencyCode { get; set; } = null!;
         [Required]
+        [Column(TypeName = "money")]
+        public decimal Price { get; set; }
+        [Required]
         public DateTime Modified { get; set; }
         [Required]
         public int ProductId { get; set; }

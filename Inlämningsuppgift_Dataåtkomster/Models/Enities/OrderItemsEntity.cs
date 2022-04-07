@@ -11,6 +11,6 @@ namespace Inlämningsuppgift_Dataåtkomster.Models.Enities
         public ProductsEntity Products { get; set; } = null!; //Fk to Producs Table
         [Required]
         public int Quantity { get; set; }
-        public OrderEntity Order { get; set; } = null!;//Fk from Orders table
+        //public OrderEntity Order { get; set; } = null!;//Fk from Orders table
     }
 }
